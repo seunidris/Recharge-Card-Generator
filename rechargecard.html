@@ -24,7 +24,7 @@
       border: solid 1px ;
       outline: 0;
       border-radius: 30px;
-      background-color: black; 
+      background-color: white; 
     }
  
     #codeInputtwrapper{
@@ -127,8 +127,8 @@
           <label for="">CODE:</label>
         <div id="codeinpwrapper"><input type="text" name="code" id="codeInput"></div>
         <div>
-          <button onclick="GeneratePin()" type="button" class="btn btn-success">Generate pin</button>
-          <button onclick="SavePin()" type="button" class="btn btn-warning">Save pin</button>
+          <button type="button" class="btn btn-success" id="rechBTN">Generate pin</button>
+          <button type="button" class="btn btn-warning" id="saveBTN">Save pin</button>
         </div>
         </div>
       
@@ -169,6 +169,19 @@
 
 
         <script>
+
+          rechBTN.addEventListener('click', ()=>{
+            if(NETWORK.value !== '' & Amount.value !== ''){
+              GeneratePin()
+            }
+          })
+
+
+          saveBTN.addEventListener('click', ()=>{
+            if(NETWORK.value !== '' & Amount.value !== ''){
+             SavePin()
+            }  
+          })
 
           let codeDisplay = document.getElementById('codeInput') 
 
@@ -228,7 +241,7 @@
               }
              card.push(cardobj);
              console.log(card);
-              
+
                 localStorage.setItem('card',JSON.stringify(card))
                 Displayinner()
             }
