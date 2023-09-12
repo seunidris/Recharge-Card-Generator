@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recharge card</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css" integrity="sha512-Z/def5z5u2aR89OuzYcxmDJ0Bnd5V1cKqBEbvLOiUNWdg9PQeXVvXLI90SE4QOHGlfLqUnDNVAYyZi8UwUTmWQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+  
+  <style>
+    *{
+      padding: 0;
+      margin: 0;
+     /* background-color: rgb(8, 169, 8); */
+    }
+    .table{
+      text-align: center;
+      border: rgb(0, 0, 85) 1px;
+    }
+    #codeinpwrapper{
+      height: 50px;
+      width: 15rem;
+      border: solid 1px ;
+      outline: 0;
+      border-radius: 30px;
+      background-color: white;
+    }
+ 
+    #codeInputtwrapper{
+      height: 50px;
+      width: 15rem;
+      border: solid 1px ;
+      outline: 0;
+      border-radius: 30px;
+      background-color: white;
+    } 
+   #carddd{
+    display: flex;
+    text-align: center;
+    justify-content: space-around;
+    padding: 30px;
+    background-color: rgba(93, 30, 238, 0.998);
+    /* color: white; */
+    
+   }
+   #codeInput{
+    margin-top: 10px;
+    outline: 0;
+    border: 0;
+    background-color: transparent;
+    /* color: white; */
+   }
+
+   #codeInputt{
+    margin-top: 10px;
+    outline: 0;
+    border: 0;
+    background-color: transparent;
+   }
+
+   h3{
+    /* text-align: center; */
+    background-color: rgba(93, 30, 238, 0.998);
+    justify-content: center;
+    color: white;
+    align-items: center;
+    height: 50px;
+    display: flex;
+    
+   }
+   
+   #delete{
+    padding: 5px;
+    background-color: red;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+   }
+
+   #loadd{
+    display: none;
+    /* background-color: white; */
+   }
+
+
+
+ 
+    
+  </style>
+   
+  
+    
+   <h3>Recharge card Generator</h3>
+
+    <div id="carddd">
+      
+     
+      <div class="netAmount" style="display: flex; flex-direction: column; max-width: 20%; padding: px; gap: 20px;">
+        <label for="">SELECT NETWORK:</label>
+        <select name="" id="NETWORK">
+          <option value="">network</option>
+          <option value="NINEMOBILE">9MOBILE</option>
+          <option value="MTN">MTN</option>
+          <option value="AIRTEL">AIRTEL</option>
+          <option value="GLO">GLO</option>
+        </select>
+
+        <label for="">SELECT AMOUNT:</label>
+        <select name="" id="Amount">
+          <option value="">Amount</option>
+          <option value="500">500</option>
+          <option value="1000">1000</option>
+          <option value="2000">2000</option>
+          <option value="5000">5000</option>
+        </select>
+
+       </div>
+      
+       
+
+     
+
+        
+        <div class="genSave" style="display: flex; align-items: start; gap: 20px; flex-direction: column;">
+        <div class="d-flex gap-2 text-center">
+          <label for="">CODE:</label>
+        <div id="codeinpwrapper"><input type="text" name="code" id="codeInput"></div>
+        <div>
+          <button onclick="GeneratePin()" type="button" class="btn btn-success">Generate pin</button>
+          <button onclick="SavePin()" type="button" class="btn btn-warning">Save pin</button>
+        </div>
+        </div>
+      
+         <div  id="loadd" class="   d-flex gap-2 align-items-center text-center">
+          <label for="">LOAD:</label>
+         
+          <div id="codeInputtwrapper"> <input type="text" name="code" id="codeInputt"></div>
+          <button id="loadCard" type="button" class="btn btn-dark">Load card</button>
+         </div>
+        </div>
+      </div> 
+
+
+
+
+        <!-- <div id="display"> -->
+          <table class="table mt-5 table-bordered">
+            <thead>
+              <tr>
+                <th scope="col">S/N</th>
+                <th scope="col">network operator</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Pin</th>
+                <th scope="col">Code</th>
+                <th scope="col">Status</th>
+                <!-- <th scope="col">S/N</th> -->
+                <th scope="col">Time Created</th>
+                <th scope="col">Date Created</th>
+                <th scope="col">Time Used</th>
+                <th scope="col">Date Used</th>
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+
+            <tbody id="Table"></tbody>
+          </table>
+        <!-- </div> -->
+
+
+        <script>
+
+          let codeDisplay = document.getElementById('codeInput') 
+
+            let card = [];
+            function GeneratePin() {
+              let pin = Math.floor(Math.random() * 100000000000000) 
+             
+              codeDisplay.value = pin
+              
+        
+              
+            }
+
+            function SavePin() {
+              
+              // console.log(pin);
+
+              console.log(codeDisplay.value);
+              let networks = NETWORK.value
+              // let selectNB = sele
+              let Amounts = Amount.value
+              let pincode =  codeDisplay.value
+              let dateUsed = false
+              let status = 'unused'
+              let currentTime = new Date().toLocaleTimeString();
+              let currentDate = new Date().toLocaleDateString();
+              let usedTime = new Date().toLocaleTimeString();
+              let usedDate = new Date().toLocaleDateString();
+              
+              
+ 
+
+
+            let codee ={
+              MTN: '*555*',
+              GLO: '*123*',
+              NINEMOBILE: '*222*',  
+              AIRTEL: '*126*'
+            }
+
+            let codess= codee[networks] 
+            console.log(codess);
+            
+              
+              let cardobj = {
+                networks,
+                Amounts,
+                pincode,
+                codess,
+                dateUsed,
+                status,
+                timeCreated: currentTime.toLocaleString(),
+                dateCreated: currentDate.toLocaleString(),
+                timeUsed: currentTime.toLocaleString(),
+                
+                
+              }
+             card.push(cardobj);
+             console.log(card);
+              
+                localStorage.setItem('card',JSON.stringify(card))
+                Displayinner()
+            }
+
+            
+
+            function Displayinner(){
+               let card = JSON.parse(localStorage.getItem('card'))
+
+               Table.innerHTML=''
+               card.forEach((elem, i)=>{
+                Table.innerHTML +=`
+                
+                <tbody>
+                                
+                <tr>
+                  <td scope= "row">${i+1}</td>
+                    <td>${elem.networks}</td>
+                    <td>${elem.Amounts}</td>
+                    <td>${elem.codess}${elem.pincode + '#'}</td>
+                    <td>${elem.pincode}</td>
+                    <td>${elem.status}</td>
+                    <td>${elem.timeCreated}</td>
+                    <td>${elem.dateCreated}</td>
+                    <td>${elem.timeUsed}</td>
+                    <td>${elem.dateUsed ?  elem.dateCreated: ''}</td>
+                    <td><button id="delete" onclick="erase(${i})">Delete</button></td>
+                    
+                </tr>
+                
+                 </tbody>
+                
+                `
+               })
+            }
+
+            function erase(id) {
+              card.splice(id,1)
+              localStorage.setItem('card', JSON.stringify(card))
+               
+            Displayinner()
+            }
+
+            
+            Displayinner()
+
+           
+            let used = false
+            
+            
+            loadCard.addEventListener('click',()=>{
+
+              let fullLenght = codeInputt.value.trim()
+
+              // let present = false
+
+              let card = JSON.parse(localStorage.getItem('card'))
+
+
+              let found = false
+
+             card.forEach((elem, i)=>{
+              let cc = elem.codess + elem.pincode + '#'
+              console.log(cc);
+              if (fullLenght===cc){
+                
+                  if (elem.status==='used') {
+                      used = true
+                      found = true
+                      // present = true
+                  }else{
+                    alert('recharge sucessfull')
+                    elem.status = 'used'
+                    elem.dateUsed = true
+                    used = false
+                    found = true
+                    // present = true
+                 
+                  } 
+
+                  found = true
+              } 
+
+              
+             })
+
+             if(!found){
+              alert('please input a valid pincode')
+             }
+
+             if(used === true){
+              used = false
+              alert('this card has been used')
+             }
+
+            
+
+             
+
+             localStorage.setItem('card', JSON.stringify(card))
+
+             Displayinner()
+            })
+           
+
+           
+        </script>
+
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js" integrity="sha512-fHY2UiQlipUq0dEabSM4s+phmn+bcxSYzXP4vAXItBvBHU7zAM/mkhCZjtBEIJexhOMzZbgFlPLuErlJF2b+0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</html>
